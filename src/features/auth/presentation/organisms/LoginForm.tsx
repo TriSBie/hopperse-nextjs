@@ -11,19 +11,25 @@ import Link from 'next/link';
 export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-    if (res.ok) {
-      router.push('/dashboard');
-    } else {
-      alert('Đăng nhập thất bại');
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, rememberMe }),
+      });
+      if (res.ok) {
+        router.push('/dashboard');
+      } else {
+        const data = await res.json();
+        alert(data.error || 'Đăng nhập thất bại');
+      }
+    } catch (error: any) {
+      alert('Lỗi: ' + error.message);
     }
   };
 
@@ -97,6 +103,17 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                   <span className="sr-only">Login with Meta</span>
                 </Button>
               </div>
+
+              <label className="flex items-center mb-4">
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="mr-2"
+                />
+                Remember me
+              </label>
+
               <div className="text-center text-sm">
                 Don&apos;t have an account?{' '}
                 <Link href="/auth/sign-up" className="underline underline-offset-4">
