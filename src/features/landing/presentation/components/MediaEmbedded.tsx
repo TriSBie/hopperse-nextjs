@@ -1,49 +1,37 @@
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import Image from 'next/image';
 
 export const MediaEmbedded = () => {
+  const videoUrl = 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+
   return (
-    <section className="container mx-auto py-20 px-4 md:px-8 lg:px-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px]">
-          <Image
-            src="/images/vision.jpg"
-            alt="Our Vision"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-lg shadow-lg"
-          />
-        </div>
+    <section className="mx-auto w-[90%]">
+      <div className="relative flex items-center justify-center">
+        {/* Dialog (ShadcnUI) */}
+        <Image
+          src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg"
+          alt="Video Thumbnail"
+          className="w-full object-contain rounded-lg"
+          width={1280}
+          height={720}
+        />
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="absolute flex items-center text-sm font-medium rounded-full">
+              ▶ Watch - 3:47
+            </Button>
+          </DialogTrigger>
 
-        {/* Nội dung Vision */}
-        <div className="space-y-4 text-center md:text-left">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Our Vision</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            We strive to be the leading provider of innovative solutions, shaping a sustainable and
-            connected future for businesses and communities worldwide.
-          </p>
-        </div>
-      </div>
+          <DialogContent className="w-full h-auto p-0 bg-transparent border-none">
+            <DialogTitle>
+              <VisuallyHidden>Video Player</VisuallyHidden>
+            </DialogTitle>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-16">
-        {/* Nội dung Mission */}
-        <div className="space-y-4 text-center md:text-left order-2 md:order-1">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Our Mission</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            Our mission is to empower businesses with cutting-edge technologies, fostering growth
-            and sustainability through continuous innovation and exceptional service.
-          </p>
-        </div>
-
-        {/* Hình ảnh bên phải */}
-        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] order-1 md:order-2">
-          <Image
-            src="/images/mission.jpg"
-            alt="Our Mission"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-lg shadow-lg"
-          />
-        </div>
+            <iframe src={videoUrl} allowFullScreen className="w-full h-full rounded-lg"></iframe>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );

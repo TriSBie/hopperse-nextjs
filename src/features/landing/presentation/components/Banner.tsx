@@ -1,5 +1,4 @@
-/* eslint-disable import/no-unresolved */
-import Image from 'next/image';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
@@ -7,43 +6,40 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import Image from 'next/image';
 
-export const Banner = () => {
+const images = [
+  'https://s3.envato.com/files/256350868/01%201200%20GG.png',
+  'https://s3.envato.com/files/256350868/01%201200%20GG.png',
+  'https://s3.envato.com/files/256350868/01%201200%20GG.png',
+  'https://s3.envato.com/files/256350868/01%201200%20GG.png',
+  'https://s3.envato.com/files/256350868/01%201200%20GG.png',
+];
+
+export function Banner() {
   return (
-    <section className="relative w-screen">
-      <Carousel className="w-screen h-[400px]">
+    <section className="mx-auto w-[95%]">
+      <Carousel>
         <CarouselContent>
-          <CarouselItem className="w-full h-[400px]">
-            <Image
-              src="/images/banner1.jpg"
-              alt="Banner 1"
-              layout="fill"
-              objectFit="cover"
-              priority
-            />
-          </CarouselItem>
-          <CarouselItem className="w-full h-[400px]">
-            <Image
-              src="/images/banner2.jpg"
-              alt="Banner 2"
-              layout="fill"
-              objectFit="cover"
-              priority
-            />
-          </CarouselItem>
-          <CarouselItem className="w-full h-[400px]">
-            <Image
-              src="/images/banner3.jpg"
-              alt="Banner 3"
-              layout="fill"
-              objectFit="cover"
-              priority
-            />
-          </CarouselItem>
+          {images.map((src, index) => (
+            <CarouselItem key={index}>
+              <Card>
+                <CardContent className="flex items-center justify-center">
+                  <Image
+                    src={src}
+                    alt={`Banner ${index + 1}`}
+                    width={800}
+                    height={400}
+                    className="w-full h-[400px] object-cover"
+                  />
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/50 text-white" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/50 text-white" />
+        {/* <CarouselPrevious />
+        <CarouselNext /> */}
       </Carousel>
     </section>
   );
-};
+}

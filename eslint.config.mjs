@@ -44,7 +44,7 @@ const config = [
     'plugin:@typescript-eslint/recommended',
     'next',
     'next/core-web-vitals',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ),
 
   {
@@ -71,9 +71,7 @@ const config = [
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-explicit-any': 'off',
     },
-    
   },
-  
 ];
 
 export default config;
