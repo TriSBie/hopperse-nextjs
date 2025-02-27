@@ -36,7 +36,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       email: user.email,
       expires: rememberMe
         ? new Date(Date.now() + 24 * 60 * 60 * 1000)
-        : new Date(Date.now() + 30 * 60 * 1000),
+        : // : : new Date(Date.now() + 30 * 60 * 1000),
+          new Date(Date.now() + 10 * 1000), // 10 seconds for testing
       rememberMe,
     };
 

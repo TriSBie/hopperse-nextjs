@@ -6,8 +6,7 @@ export default async function ServerSession({
 }: {
   children: (session: Session | null) => React.ReactNode;
 }) {
-  const cookieStore = cookies();
-  const sessionCookie = (await cookieStore).get('session');
+  const sessionCookie = (await cookies()).get('session');
 
   let session: Session | null = null;
   if (sessionCookie) {

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Menu, X, ChevronRight } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { Session } from '@/shared/types';
+import { useSessionContext } from '@/context/SessionContext';
 
 const menuItems = [
   { href: '#features', label: 'Features' },
@@ -13,7 +13,8 @@ const menuItems = [
   { href: '#pricing', label: 'Pricing' },
 ];
 
-export default function Header({ initialSession }: { initialSession: Session | null }) {
+export default function Header() {
+  const { session } = useSessionContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -80,14 +81,14 @@ export default function Header({ initialSession }: { initialSession: Session | n
             </button>
 
             {/* Auth Links */}
-            {initialSession ? (
+            {session ? (
               <a
                 onClick={() => {
                   fetch('/api/auth/logout', { method: 'POST' });
                 }}
-                className="hidden sm:inline-flex text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
+                className="hidden sm:inline-flex text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
               >
-                Log out
+                Hello {session.email}, Log out
               </a>
             ) : (
               <>

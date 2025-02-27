@@ -6,6 +6,7 @@ import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import { SessionTimeoutModal } from '@/features/auth/presentation/organisms/SessionTimeoutModal';
 import ServerSession from '@/app/session/server-session';
+import { SessionProvider } from '@/context/SessionContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,16 +29,18 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ServerSession>
-            {(session) => (
-              <div className="flex flex-col min-h-screen">
-                <Header initialSession={session} />
-                <main>{children}</main>
-                <Footer />
-                <SessionTimeoutModal initialSession={session} />
-              </div>
-            )}
-          </ServerSession>
+          <SessionProvider>
+            <ServerSession>
+              {(session) => (
+                <div className="flex flex-col min-h-screen">
+                  <Header />
+                  <main>{children}</main>
+                  <Footer />
+                  <SessionTimeoutModal initialSession={session} />
+                </div>
+              )}
+            </ServerSession>
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

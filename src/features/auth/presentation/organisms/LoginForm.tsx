@@ -23,12 +23,15 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
         body: JSON.stringify({ email, password, rememberMe }),
       });
       if (res.ok) {
+        localStorage.setItem('isLogged', 'true');
         router.push('/dashboard');
       } else {
+        localStorage.removeItem('isLogged');
         const data = await res.json();
         alert(data.error || 'Đăng nhập thất bại');
       }
     } catch (error: any) {
+      localStorage.removeItem('isLogged');
       alert('Lỗi: ' + error.message);
     }
   };
