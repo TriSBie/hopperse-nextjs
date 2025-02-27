@@ -1,4 +1,3 @@
-'use client';
 import { LoginForm } from '@/features/auth/presentation/organisms/LoginForm';
 
 export default function SignInPage() {

@@ -1,5 +1,6 @@
 import { LoginUseCase } from '@/features/auth/application/use-cases/loginUseCase';
 import { UserRepository } from '@/features/auth/infrastructure/repositories/userRepository';
+import { signIn } from '../../../../auth';
 
 export default async function handler(req: any, res: any) {
   const { email, password } = req.body;
