@@ -1,17 +1,17 @@
+/* eslint-disable import/no-unresolved */
 'use client';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Menu } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+
+import { ModeToggle } from './ModeToggle';
+import { buttonVariants } from '@/components/ui/button';
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
 } from '@/components/ui/navigation-menu';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
-import Link from 'next/link';
-import { useState } from 'react';
-
-import { Input } from '@/components/ui/input';
-import { ModeToggle } from './ModeToggle';
 
 interface RouteProps {
   href: string;
@@ -45,14 +45,9 @@ export const Navbar = () => {
         <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
           <NavigationMenuItem className="font-bold flex">
             <Link rel="noreferrer noopener" href="/" className="ml-2 font-bold text-xl flex">
-              Fiora Logo
+              Hopper
             </Link>
           </NavigationMenuItem>
-
-          <div className="flex items-center space-x-2">
-      <Input type="text" className="px-3 py-2 w-80" placeholder="Search..." />
-      <Button className="px-3 py-2">Search</Button>
-    </div>
 
           {/* mobile */}
           <span className="flex md:hidden">

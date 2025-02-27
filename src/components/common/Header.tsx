@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Menu, X, ChevronRight } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
 
 const menuItems = [
   { href: '#features', label: 'Features' },
@@ -42,6 +44,11 @@ export default function Header() {
               <span className="text-primary">Hopper</span>
             </Link>
           </motion.div>
+
+          <div className="flex items-center space-x-2">
+            <Input type="text" className="px-3 py-2 w-80" placeholder="Search..." />
+            <Button className="px-3 py-2">Search</Button>
+          </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-1">
