@@ -1,29 +1,37 @@
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
+import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
+import { useRef } from 'react';
 
 export const ReviewSection = () => {
+  const autoplayPlugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: false }));
+
   return (
-    <section className="container mx-auto py-10">
-      <Carousel className="w-full">
-        <CarouselContent className="flex gap-4">
-          {['Review 1', 'Review 2', 'Review 3', 'Review 4', 'Review 5', 'Review 6'].map(
-            (review, index) => (
-              <CarouselItem
-                key={index}
-                className="min-w-[250px] h-[100px] flex items-center justify-center border border-gray-300 rounded-lg bg-white shadow-md snap-start"
-              >
-                {review}
-              </CarouselItem>
-            ),
-          )}
+    <section className="w-[100%] mx-auto flex my-20">
+      <Carousel
+        className="w-full"
+        plugins={[autoplayPlugin.current]}
+        onMouseEnter={autoplayPlugin.current.stop}
+        onMouseLeave={autoplayPlugin.current.reset}
+      >
+        <CarouselContent>
+          {Array.from({ length: 10 }).map((_, index) => (
+            <CarouselItem
+              key={index}
+              className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6"
+            >
+              <div>
+                <Card className="w-full h-48 shadow-md">
+                  <CardContent className="flex items-center justify-center h-full">
+                    <span className="text-lg font-semibold">Review {index + 1}</span>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        {/* <CarouselPrevious />
+    <CarouselNext /> */}
       </Carousel>
     </section>
   );

@@ -1,35 +1,36 @@
-import { Card, CardContent } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
+import { useRef } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 
 const images = [
-  'https://s3.envato.com/files/256350868/01%201200%20GG.png',
-  'https://s3.envato.com/files/256350868/01%201200%20GG.png',
-  'https://s3.envato.com/files/256350868/01%201200%20GG.png',
-  'https://s3.envato.com/files/256350868/01%201200%20GG.png',
-  'https://s3.envato.com/files/256350868/01%201200%20GG.png',
+  'https://c8.alamy.com/comp/2AMC1Y6/online-distance-education-banner-2AMC1Y6.jpg',
+  'https://c8.alamy.com/comp/2AMC1Y6/online-distance-education-banner-2AMC1Y6.jpg',
+  'https://c8.alamy.com/comp/2AMC1Y6/online-distance-education-banner-2AMC1Y6.jpg',
+  'https://c8.alamy.com/comp/2AMC1Y6/online-distance-education-banner-2AMC1Y6.jpg',
+  'https://c8.alamy.com/comp/2AMC1Y6/online-distance-education-banner-2AMC1Y6.jpg',
 ];
 
 export function Banner() {
+  const autoplayPlugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: false }));
   return (
-    <section className="mx-auto w-[95%]">
-      <Carousel>
+    <section>
+      <Carousel
+        plugins={[autoplayPlugin.current]}
+        onMouseEnter={autoplayPlugin.current.stop}
+        onMouseLeave={autoplayPlugin.current.reset}
+      >
         <CarouselContent>
           {images.map((src, index) => (
             <CarouselItem key={index}>
               <Card>
-                <CardContent className="flex items-center justify-center">
+                <CardContent className="mt-32 flex items-center justify-center">
                   <Image
                     src={src}
                     alt={`Banner ${index + 1}`}
-                    width={800}
-                    height={400}
+                    width={1280}
+                    height={720}
                     className="w-full h-[400px] object-cover"
                   />
                 </CardContent>
@@ -37,8 +38,6 @@ export function Banner() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        {/* <CarouselPrevious />
-        <CarouselNext /> */}
       </Carousel>
     </section>
   );
