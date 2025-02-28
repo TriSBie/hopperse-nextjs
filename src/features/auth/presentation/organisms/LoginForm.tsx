@@ -57,8 +57,14 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                 />
               </div>
               <div className="grid gap-2">
-                <div className="flex items-center">
+                <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>
+                  <Link
+                    href="/auth/sign-in/forgot-password"
+                    className="text-sm text-muted-foreground hover:text-primary"
+                  >
+                    Forgot password?
+                  </Link>
                 </div>
                 <Input
                   id="password"
@@ -117,7 +123,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
               </label>
 
               <div className="text-center text-sm">
-                Don&apos;t have an account?{' '}
+                Don't have an account?{' '}
                 <Link href="/auth/sign-up" className="underline underline-offset-4">
                   Sign up
                 </Link>
