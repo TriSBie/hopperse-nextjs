@@ -8,7 +8,7 @@ export const MediaEmbedded = () => {
 
   return (
     <div className="relative flex items-center justify-center">
-      {/* Dialog (ShadcnUI) */}
+      {/* Ảnh thumbnail của video */}
       <Image
         src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg"
         alt="Video Thumbnail"
@@ -16,19 +16,23 @@ export const MediaEmbedded = () => {
         width={1280}
         height={720}
       />
+
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="absolute flex items-center text-sm font-medium rounded-full">
+          <Button className="absolute flex items-center text-sm font-medium rounded-full bg-black/70 text-white px-4 py-2">
             ▶ Watch - 3:47
           </Button>
         </DialogTrigger>
 
-        <DialogContent className="w-full h-auto p-0 bg-transparent border-none">
+        {/* Điều chỉnh kích thước video lớn hơn */}
+        <DialogContent className="w-[80vw] max-w-4xl h-auto py pt-8 pb-4 border-none rounded-lg">
           <DialogTitle>
             <VisuallyHidden>Video Player</VisuallyHidden>
           </DialogTitle>
 
-          <iframe src={videoUrl} allowFullScreen className="w-full h-full rounded-lg"></iframe>
+          <div className="relative w-full h-[450px] md:h-[500px] lg:h-[550px]">
+            <iframe src={videoUrl} allowFullScreen className="w-full h-full rounded-lg" />
+          </div>
         </DialogContent>
       </Dialog>
     </div>

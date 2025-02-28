@@ -1,13 +1,11 @@
-'use client';
+import dynamic from 'next/dynamic';
 
-import LandingPage from '@/features/landing/presentation/LandingPage';
+const LandingPageRender = dynamic(() => import('@/features/landing/presentation/LandingPage'), {
+  loading: () => <div>Loading...</div>,
+});
 
 function page() {
-  return (
-    <div>
-      <LandingPage />
-    </div>
-  );
+  return <LandingPageRender />;
 }
 
 export default page;

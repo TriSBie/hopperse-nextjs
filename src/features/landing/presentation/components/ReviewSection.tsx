@@ -4,7 +4,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import { useRef } from 'react';
 
 export const ReviewSection = () => {
-  const autoplayPlugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: false }));
+  const autoplayPlugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
 
   return (
     <section className="w-[100%] mx-auto flex my-20">

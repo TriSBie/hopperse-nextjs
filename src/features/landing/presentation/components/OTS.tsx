@@ -18,21 +18,21 @@ const OTS = () => {
           alt="Blurred shape"
         />
       </div>
-      <div className="max-w6xl mx-auto px-4 sm:px-6">
+      <div className="max-w6xl mx-auto px-5 sm:px-6">
         <div className="bg-linear-to-r from-transparent via-gray-800/50 py-12 md:py-20">
           <div className="mx-auto max-w-3xl text-center">
             <h2
               data-aos="fade-up"
-              className="my-5 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl md:text-5xl"
+              className="my-2 bg-gradient-to-r from-green-400 via-green-400 to-pink-400 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl md:text-5xl"
             >
-              Join the content-first platform
+              Learn and Grow with Hopper Solution & Education
             </h2>
 
             <div className="mx-auto max-w-xs sm:flex sm:max-w-none sm:justify-center">
               <div data-aos="fade-up" data-aos-delay={400}>
-                <Button className="mb-4 w-full sm:mb-0 sm:w-auto bg-gradient-to-t from-indigo-600 to-indigo-500 text-white shadow-lg hover:bg-indigo-700">
+                <Button className="mb-4 w-full sm:mb-0 sm:w-auto bg-gradient-to-t from-green-600 to-green-500 text-white shadow-lg hover:bg-indigo-700">
                   <span className="relative inline-flex items-center">
-                    Start Building
+                    Start Learning Now
                     <span className="ml-1 tracking-normal text-white/50 transition-transform group-hover:translate-x-0.5">
                       →
                     </span>
@@ -45,7 +45,7 @@ const OTS = () => {
                   variant="outline"
                   className="w-full sm:ml-4 sm:w-auto border-gray-600 text-gray-300 bg-gradient-to-b from-gray-800 to-gray-700 hover:bg-gray-600"
                 >
-                  Schedule Demo
+                  Get a Free Consultation
                 </Button>
               </div>
             </div>

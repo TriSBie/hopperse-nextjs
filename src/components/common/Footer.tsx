@@ -1,12 +1,23 @@
+import hopperLogo from '@public/images/logo.jpg';
+import { Facebook, Github, Instagram, Twitter } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { Facebook, Twitter, Instagram, Github } from 'lucide-react';
 
 export default function Footer() {
   return (
     <footer className="border-t border-border py-12">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Logo & Company */}
+          <div>
+            <Image
+              src={hopperLogo}
+              width={1280}
+              height={720}
+              className=" w-[10vw]  rounded-full"
+              alt={'hopper-logo'}
+            />
+          </div>
           <div>
             <h3 className="text-lg font-semibold">Hopper</h3>
             <ul className="mt-4 space-y-2">
@@ -133,8 +144,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* Copyright */}
-          <p className="mt-4 md:mt-0 text-sm">&copy; 2023 Company. All rights reserved.</p>
+          <p className="mt-4 md:mt-0 text-sm">&copy; 2025 Hopper Company. All rights reserved.</p>
         </div>
       </div>
     </footer>

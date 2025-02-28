@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import './style.css';
 
 export const metadata: Metadata = {
   title: 'Hopper Solution and Education',

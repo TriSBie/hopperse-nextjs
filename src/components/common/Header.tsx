@@ -1,15 +1,15 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronRight, Menu, Moon, Sun, X } from 'lucide-react';
+import { ChevronRight, HelpCircle, Menu, Moon, Search, Settings, Sun, X } from 'lucide-react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { Input } from '../ui/input';
 
 const menuItems = [
-  { href: '#Help', label: 'Help' },
-  { href: '#Setting', label: 'Setting' },
+  { href: '#Help', label: 'Help', icon: <HelpCircle size={18} /> },
+  { href: '#Setting', label: 'Setting', icon: <Settings size={18} /> },
   { href: '#pricing', label: 'Pricing' },
 ];
 
@@ -28,7 +28,9 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'bg-background/80 backdrop-blur-md' : 'bg-background/100 backdrop-blur-md'}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+        isScrolled ? 'bg-background/80 backdrop-blur-md' : 'bg-background/100 backdrop-blur-md'
+      }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
@@ -44,8 +46,16 @@ export default function Header() {
             </Link>
           </motion.div>
 
-          <div className="flex items-center space-x-2 md:space-x-4">
-            <Input type="text" className=" sm:w-30 md:w-96" placeholder="Search..." />
+          <div className="relative w-full max-w-md">
+            <Input
+              type="text"
+              className="w-full h-12 px-4 pl-12 border border-white rounded-lg shadow-sm focus:ring-2 focus:ring-primary focus:border-primary text-sm placeholder-gray-200"
+              placeholder="Search anything here!"
+            />
+            <Search
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"
+              size={20}
+            />
           </div>
 
           {/* Navigation */}
@@ -59,8 +69,9 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="relative text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 ease-in-out px-4 py-2 group"
+                  className="relative flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 ease-in-out px-4 py-2 group"
                 >
+                  {item.icon && <span className="mr-1">{item.icon}</span>}
                   {item.label}
                   <span className="absolute left-0 right-0 bottom-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out" />
                 </Link>
@@ -125,9 +136,10 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block text-base font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 ease-in-out px-4 py-2"
+                  className="block flex items-center text-base font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 ease-in-out px-4 py-2"
                   onClick={toggleMenu}
                 >
+                  {item.icon && <span className="mr-2">{item.icon}</span>}
                   {item.label}
                 </Link>
               ))}
