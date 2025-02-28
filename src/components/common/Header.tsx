@@ -1,15 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronRight, Menu, Moon, Sun, X } from 'lucide-react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Moon, Sun, Menu, X, ChevronRight } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { Input } from '../ui/input';
 import { useSessionContext } from '@/context/SessionContext';
 
 const menuItems = [
-  { href: '#features', label: 'Features' },
-  { href: '#testimonials', label: 'Testimonials' },
+  { href: '#Help', label: 'Help' },
+  { href: '#Setting', label: 'Setting' },
   { href: '#pricing', label: 'Pricing' },
 ];
 
@@ -29,7 +30,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'bg-background/80 backdrop-blur-md' : 'bg-transparent'}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'bg-background/80 backdrop-blur-md' : 'bg-background/100 backdrop-blur-md'}`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
@@ -44,6 +45,10 @@ export default function Header() {
               <span className="text-primary">Hopper</span>
             </Link>
           </motion.div>
+
+          <div className="flex items-center space-x-2 md:space-x-4">
+            <Input type="text" className=" sm:w-30 md:w-96" placeholder="Search..." />
+          </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-1">

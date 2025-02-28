@@ -1,155 +1,140 @@
 import Link from 'next/link';
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Github } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-background border-t border-border">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <footer className="border-t border-border py-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Logo & Company */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">
-              Product
-            </h3>
-            <ul className="mt-4 space-y-4">
+            <h3 className="text-lg font-semibold">Hopper</h3>
+            <ul className="mt-4 space-y-2">
               <li>
-                <Link
-                  href="#"
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Features
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Integrations
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  API
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">
-              Company
-            </h3>
-            <ul className="mt-4 space-y-4">
-              <li>
-                <Link
-                  href="#"
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
+                <Link href="#" className="hover:underline">
                   About
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Blog
+                <Link href="#" className="hover:underline">
+                  Features
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Careers
+                <Link href="#" className="hover:underline">
+                  Projects
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Press
+                <Link href="#" className="hover:underline">
+                  Contact
                 </Link>
               </li>
             </ul>
           </div>
+
+          {/* About */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">
-              Legal
-            </h3>
-            <ul className="mt-4 space-y-4">
+            <h3 className="text-lg font-semibold">About</h3>
+            <ul className="mt-4 space-y-2">
               <li>
-                <Link
-                  href="#"
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Privacy
+                <Link href="#" className="hover:underline">
+                  Company
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Terms
+                <Link href="#" className="hover:underline">
+                  FAQs
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Cookie Policy
+                <Link href="#" className="hover:underline">
+                  News
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:underline">
+                  Recent Updates
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h3 className="text-lg font-semibold">Resources</h3>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link href="#" className="hover:underline">
+                  Courses
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:underline">
+                  Development Tutorials
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:underline">
+                  Documentation
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:underline">
+                  Blog
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h3 className="text-lg font-semibold">Support</h3>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link href="#" className="hover:underline">
+                  Customer Support
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:underline">
+                  Project Updates
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:underline">
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="hover:underline">
+                  Privacy Policy
                 </Link>
               </li>
             </ul>
           </div>
         </div>
-        <div className="mt-8 border-t border-border pt-8 md:flex md:items-center md:justify-between">
-          <div className="flex space-x-6 md:order-2">
-            <Link
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <span className="sr-only">Facebook</span>
-              <Facebook className="h-6 w-6" />
+
+        {/* Social Icons & Copyright */}
+        <div className="mt-10 border-t border-border pt-6 flex flex-col md:flex-row items-center justify-between">
+          {/* Social Icons */}
+          <div className="flex space-x-6">
+            <Link href="#" className="hover:scale-110 transition-transform">
+              <Facebook className="h-5 w-5" />
             </Link>
-            <Link
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <span className="sr-only">Twitter</span>
-              <Twitter className="h-6 w-6" />
+            <Link href="#" className="hover:scale-110 transition-transform">
+              <Twitter className="h-5 w-5" />
             </Link>
-            <Link
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <span className="sr-only">Instagram</span>
-              <Instagram className="h-6 w-6" />
+            <Link href="#" className="hover:scale-110 transition-transform">
+              <Instagram className="h-5 w-5" />
             </Link>
-            <Link
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <span className="sr-only">LinkedIn</span>
-              <Linkedin className="h-6 w-6" />
+            <Link href="#" className="hover:scale-110 transition-transform">
+              <Github className="h-5 w-5" />
             </Link>
           </div>
-          <p className="mt-8 text-base text-muted-foreground md:mt-0 md:order-1">
-            &copy; 2023 StreamLine, Inc. All rights reserved.
-          </p>
+
+          {/* Copyright */}
+          <p className="mt-4 md:mt-0 text-sm">&copy; 2023 Company. All rights reserved.</p>
         </div>
       </div>
     </footer>

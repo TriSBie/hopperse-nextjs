@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { ThemeProvider } from '@/components/theme-provider';
-import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
+import { ThemeProvider } from '@/components/providers/theme-provider';
 import { SessionTimeoutModal } from '@/features/auth/presentation/organisms/SessionTimeoutModal';
 import ServerSession from '@/app/session/server-session';
 import { SessionProvider } from '@/context/SessionContext';
