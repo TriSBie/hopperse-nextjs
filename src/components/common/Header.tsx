@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronRight, HelpCircle, Menu, Moon, Search, Settings, Sun, X } from 'lucide-react';
 import Link from 'next/link';
+import { signOut, useSession } from 'next-auth/react';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { Input } from '../ui/input';
@@ -14,6 +15,7 @@ const menuItems = [
 ];
 
 export default function Header() {
+  const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -95,19 +97,30 @@ export default function Header() {
             </button>
 
             {/* Auth Links */}
-            <Link
-              href="/auth/sign-in"
-              className="hidden sm:inline-flex text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
-            >
-              Log in
-            </Link>
+            {session ? (
+              <a
+                onClick={() => signOut({ callbackUrl: '/auth/sign-in' })}
+                className="hidden sm:inline-flex text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+              >
+                Hello {session.user?.email}, Log out
+              </a>
+            ) : (
+              <>
+                <Link
+                  href="/auth/sign-in"
+                  className="hidden sm:inline-flex text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
+                >
+                  Log in
+                </Link>
 
-            <Link
-              href="/auth/sign-up"
-              className="hidden sm:inline-flex items-center text-sm font-medium text-primary bg-primary/10 hover:bg-primary/20 px-4 py-2 rounded-full transition-colors duration-200"
-            >
-              Sign up <ChevronRight size={16} className="ml-1" />
-            </Link>
+                <Link
+                  href="/auth/sign-up"
+                  className="hidden sm:inline-flex items-center text-sm font-medium text-primary bg-primary/10 hover:bg-primary/20 px-4 py-2 rounded-full transition-colors duration-200"
+                >
+                  Sign up <ChevronRight size={16} className="ml-1" />
+                </Link>
+              </>
+            )}
 
             {/* Mobile Menu Button */}
             <button
@@ -136,7 +149,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block flex items-center text-base font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 ease-in-out px-4 py-2"
+                  className="flex items-center text-base font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 ease-in-out px-4 py-2"
                   onClick={toggleMenu}
                 >
                   {item.icon && <span className="mr-2">{item.icon}</span>}
