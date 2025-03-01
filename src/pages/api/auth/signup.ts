@@ -16,10 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return;
     }
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    await signUpUseCase.execute(email, hashedPassword);
+    await signUpUseCase.execute(email, password);
     res.status(201).json({ message: 'Đăng ký thành công' });
   } catch (error) {
     console.log(error);
