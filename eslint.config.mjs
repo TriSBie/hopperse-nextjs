@@ -38,17 +38,13 @@ const config = [
     plugins: {
       '@typescript-eslint': pluginTs,
     },
-    rules: {
-      '@typescript-eslint/no-unused-vars': 'warn',
-    },
   },
-
   ...compat.extends(
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'next',
     'next/core-web-vitals',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ),
 
   {
@@ -72,6 +68,8 @@ const config = [
       ],
       'unused-imports/no-unused-imports': 'error',
       'prettier/prettier': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ];

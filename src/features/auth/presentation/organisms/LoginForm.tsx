@@ -1,28 +1,36 @@
 'use client';
-import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async (e: any) => {
+  const handleCredentialsSignIn = async (e: any) => {
     e.preventDefault();
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-    if (res.ok) {
-      router.push('/dashboard');
-    } else {
+    try {
+      const res = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      });
+      if (res?.ok) {
+        router.push('/dashboard');
+      } else {
+        console.error('Đăng nhập thất bại');
+        alert('Đăng nhập thất bại');
+      }
+    } catch (error: any) {
+      console.error('Lỗi: ', error);
       alert('Đăng nhập thất bại');
     }
   };
@@ -30,8 +38,8 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card className="overflow-hidden">
-        <CardContent className="grid p-0 md:grid-cols-2">
-          <form onSubmit={handleSubmit} className="p-6 md:p-8">
+        <CardContent className="grid p-0">
+          <form onSubmit={handleCredentialsSignIn} className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Welcome back</h1>
@@ -49,8 +57,14 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                 />
               </div>
               <div className="grid gap-2">
-                <div className="flex items-center">
+                <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>
+                  <Link
+                    href="/auth/sign-in/forgot-password"
+                    className="text-sm text-muted-foreground hover:text-primary"
+                  >
+                    Forgot password?
+                  </Link>
                 </div>
                 <Input
                   id="password"
@@ -78,7 +92,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                   </svg>
                   <span className="sr-only">Login with Apple</span>
                 </Button>
-                <Button variant="outline" className="w-full">
+                <Button onClick={() => signIn('google')} variant="outline" className="w-full">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path
                       d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
@@ -97,21 +111,25 @@ export function LoginForm({ className, ...props }: React.ComponentProps<'div'>) 
                   <span className="sr-only">Login with Meta</span>
                 </Button>
               </div>
+
+              <label className="flex items-center mb-4">
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="mr-2"
+                />
+                Remember me
+              </label>
+
               <div className="text-center text-sm">
-                Don&apos;t have an account?{' '}
+                Don't have an account?{' '}
                 <Link href="/auth/sign-up" className="underline underline-offset-4">
                   Sign up
                 </Link>
               </div>
             </div>
           </form>
-          <div className="relative hidden bg-muted md:block">
-            <img
-              src="/placeholder.svg"
-              alt="Image"
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-            />
-          </div>
         </CardContent>
       </Card>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
